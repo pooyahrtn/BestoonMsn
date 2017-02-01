@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="io.fharmony.bedebestoon.ui.activity.SignInUp"
+    android:id="@+id/sign_main_layout"
+    android:layoutDirection="rtl">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ورود"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="33sp"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/sign_title"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="186dp">
+
+        <EditText
+            android:id="@+id/sign_username"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="username"
+            android:inputType="textNoSuggestions|textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/sign_passwd"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="password"
+            android:inputType="textNoSuggestions|textPassword"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:text="ورود"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/sign_signin" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ثبت نام"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignTop="@+id/sign_signin"
+        android:layout_toStartOf="@+id/sign_signin"
+        android:id="@+id/sign_signup"/>
+
+</RelativeLayout>
