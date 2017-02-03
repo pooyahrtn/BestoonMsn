@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import io.fharmony.bedebestoon.R;
 import io.fharmony.bedebestoon.data.http.InExAsync;
@@ -32,32 +34,22 @@ public class InExDialog extends DialogFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button submit = (Button)view.findViewById(R.id.dialog_submit);
-        final Button income = (Button)view.findViewById(R.id.dialog_in_btn);
-        income.setSelected(true);
-        final Button expense = (Button)view.findViewById(R.id.dialog_ex_btn);
+        final RadioGroup inOrEx = (RadioGroup)view.findViewById(R.id.dialog_radio_group);
+        inOrEx.check(R.id.dialog_in_btn);
 
         final EditText text = (EditText)view.findViewById(R.id.dialog_text);
         final EditText amount = (EditText)view.findViewById(R.id.dialog_amount);
 
-        income.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                income.setSelected(true);
-                expense.setSelected(false);
-                isIncome = true;
-            }
-        });
-        expense.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                expense.setSelected(true);
-                income.setSelected(false);
-                isIncome = false;
-            }
-        });
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (inOrEx.getCheckedRadioButtonId() ==
+                        R.id.dialog_in_btn) {
+                    isIncome = true;
+                }
+                else {
+                    isIncome = false;
+                }
                 new InExAsync(amount.getText().toString(),
                         text.getText().toString(),
                         isIncome)

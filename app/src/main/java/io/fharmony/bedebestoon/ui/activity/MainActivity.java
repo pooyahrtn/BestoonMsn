@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -46,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
     static TextView inAmount;
     static TextView exTimes;
     static TextView exAmount;
+    static TextView wholeAmount;
     static SparkView sparkView;
+    static CoordinatorLayout mainCoord;
     FloatingActionButton fab;
     Toolbar toolbar;
     Drawer drawer;
@@ -68,8 +72,10 @@ public class MainActivity extends AppCompatActivity {
         inAmount = (TextView)findViewById(R.id.in_comp);
         exTimes = (TextView)findViewById(R.id.ex_times);
         exAmount = (TextView)findViewById(R.id.ex_comp);
+        wholeAmount = (TextView)findViewById(R.id.comp);
         sparkView = (SparkView)findViewById(R.id.main_sparkview);
         fab = (FloatingActionButton)findViewById(R.id.main_fab);
+        mainCoord = (CoordinatorLayout)findViewById(R.id.activity_main);
         context = this;
 
         setSupportActionBar(toolbar);
@@ -97,9 +103,24 @@ public class MainActivity extends AppCompatActivity {
 
     public static void setTable(GenStatResult gsr) {
         inTimes.setText(String.valueOf(gsr.getIncome().getCount()));
-        inAmount.setText(String.valueOf(gsr.getIncome().getSum()));
+        if (gsr.getIncome().getSum() != null) {
+            inAmount.setText(String.valueOf(gsr.getIncome().getSum()));
+        }
+        else {
+            inAmount.setText("0");
+        }
         exTimes.setText(String.valueOf(gsr.getExpense().getCount()));
-        exAmount.setText(String.valueOf(gsr.getExpense().getSum()));
+        if (gsr.getExpense().getSum() != null) {
+            exAmount.setText(String.valueOf(gsr.getExpense().getSum()));
+        }
+        else {
+            exAmount.setText("0");
+        }
+        wholeAmount.setText("0");
+        Double wholeAmountD = gsr.getIncome().getSum() - gsr.getExpense().getSum();
+        wholeAmount.setText(wholeAmountD.toString());
+
+
 
     }
     void setupDrawer() {
@@ -161,6 +182,9 @@ public class MainActivity extends AppCompatActivity {
     public static void refresh() {
         Log.d("bestoon", "refreshing... ");
         new GenStatAsync().execute();
+    }
+    public static void snackBarLauncher(String text) {
+        Snackbar.make(mainCoord, text, 1000).show();
     }
 
 
