@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.SignInUp"></activity>
+        <activity android:name=".ui.activity.SignInUp"
+            android:windowSoftInputMode="adjustResize"></activity>
     </application>
 
 </manifest>

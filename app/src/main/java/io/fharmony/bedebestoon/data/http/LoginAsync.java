@@ -1,5 +1,6 @@
 package io.fharmony.bedebestoon.data.http;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -26,11 +27,13 @@ public class LoginAsync extends AsyncTask<Void, Void, Void> {
     String username;
     String password;
     SharedPreferences sp;
+    Context context;
 
-    public LoginAsync(String username, String password, SharedPreferences sp) {
+    public LoginAsync(String username, String password, SharedPreferences sp, Context context) {
         this.username = username;
         this.password = password;
         this.sp = sp;
+        this.context = context;
     }
 
     @Override
@@ -58,7 +61,7 @@ public class LoginAsync extends AsyncTask<Void, Void, Void> {
                 LoginResult lr = gson.fromJson(res.asString(), LoginResult.class);
                 if (lr.getResult().equals("ok")) {
                     sp.edit().putString(App.tokenKey, lr.getToken()).commit();
-                    App.getToken();
+                    App.getToken(context);
                 }
             }
         } catch (BridgeException be) {
@@ -70,6 +73,6 @@ public class LoginAsync extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        SignInUp.launchMain();
+        SignInUp.launchMain(context);
     }
 }

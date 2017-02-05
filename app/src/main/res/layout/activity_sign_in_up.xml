@@ -31,7 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:hint="username"
-            android:inputType="textNoSuggestions|textEmailAddress"/>
+            android:inputType="textNoSuggestions|textEmailAddress"
+            android:imeOptions="actionNext"/>
 
         <EditText
             android:id="@+id/sign_passwd"
@@ -39,6 +40,7 @@
             android:layout_height="wrap_content"
             android:hint="password"
             android:inputType="textNoSuggestions|textPassword"
+            android:imeOptions="actionGo"
             />
 
     </LinearLayout>

@@ -12,15 +12,14 @@ public class App extends Application {
 
     public static String token = null;
     public static String tokenKey = "io.fharmony.bedebestoon.token";
-    static Context context;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        context = this;
-        getToken();
+//        context = this;
+        getToken(this);
     }
-    public static void getToken() {
+    public static void getToken(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(
                 "io.fharmony.bedebestoon", Context.MODE_PRIVATE);
         token = prefs.getString(tokenKey, null);
