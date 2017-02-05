@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import io.fharmony.bedebestoon.App;
 import io.fharmony.bedebestoon.data.model.LoginResult;
+import io.fharmony.bedebestoon.ui.activity.MainActivity;
 import io.fharmony.bedebestoon.ui.activity.SignInUp;
 
 /**
@@ -62,6 +63,7 @@ public class LoginAsync extends AsyncTask<Void, Void, Void> {
             }
         } catch (BridgeException be) {
             Log.d(TAG, "doInBackground: something happened");
+            MainActivity.snackBarLauncher("یه چیزی شد!");
         }
         return null;
     }
