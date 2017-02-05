@@ -63,7 +63,6 @@ public class LoginAsync extends AsyncTask<Void, Void, Void> {
             }
         } catch (BridgeException be) {
             Log.d(TAG, "doInBackground: something happened");
-            MainActivity.snackBarLauncher("یه چیزی شد!");
         }
         return null;
     }

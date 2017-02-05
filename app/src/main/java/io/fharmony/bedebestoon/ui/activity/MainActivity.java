@@ -176,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
     void signOut() {
         SharedPreferences sp = this.getSharedPreferences("io.fharmony.bedebestoon", Context.MODE_PRIVATE);
         sp.edit().remove(App.tokenKey).apply();
+        App.getToken();
         finish();
         startActivity(new Intent(this, MainActivity.class));
     }
