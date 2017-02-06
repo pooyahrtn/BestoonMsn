@@ -25,12 +25,25 @@
         android:titleTextColor="#FFFFFF"
         app:title="بستون مثن"
         android:elevation="4dp"
-        />
+        >
+            <ProgressBar
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/main_progress"
+                android:indeterminateTint="@color/md_black_1000"
+                android:indeterminateTintMode="src_in"
+                android:layout_gravity="left"
+                android:layout_marginLeft="8dp"
+                android:indeterminate="true"
+                android:visibility="invisible"
+                />
+
+        </android.support.v7.widget.Toolbar>
 
         <!--just a stupid experiment with ConstraintLayout, absolute rubbish-->
 
         <ScrollView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -153,10 +166,19 @@
                 app:layout_constraintHorizontal_bias="0.0" />
         </android.support.constraint.ConstraintLayout>
 
-        <com.robinhood.spark.SparkView
-            android:layout_width="match_parent"
-            android:layout_height="191dp"
-            android:id="@+id/main_sparkview" />
+        <!--<com.robinhood.spark.SparkView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="191dp"-->
+            <!--android:id="@+id/main_sparkview" />-->
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                    android:text="تاریخچه"
+                    android:textSize="18sp"
+                    android:id="@+id/main_history_btn"
+
+                    />
             </LinearLayout>
         </ScrollView>
 
@@ -175,7 +197,8 @@
         app:fabSize="normal"
         app:srcCompat="@drawable/ic_attach_money24dp"
         app:elevation="6dp"
-        app:pressedTranslationZ="12dp"/>
+        app:pressedTranslationZ="12dp"
+        android:gravity="end" />
 
 
 </android.support.design.widget.CoordinatorLayout>

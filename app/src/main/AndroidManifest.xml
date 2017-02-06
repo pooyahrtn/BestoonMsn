@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.SignInUp"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="keyboardHidden|orientation|screenSize">></activity>
     </application>
 
 </manifest>

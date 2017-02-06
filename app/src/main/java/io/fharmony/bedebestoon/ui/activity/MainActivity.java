@@ -1,5 +1,6 @@
 package io.fharmony.bedebestoon.ui.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,8 +13,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -22,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -57,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     Drawer drawer;
     Context context;
+    Button historyBtn;
     static Typeface vazir;
+    static ProgressBar progressSpinner;
 
 
     @Override
@@ -76,14 +82,17 @@ public class MainActivity extends AppCompatActivity {
         exTimes = (TextView)findViewById(R.id.ex_times);
         exAmount = (TextView)findViewById(R.id.ex_comp);
         wholeAmount = (TextView)findViewById(R.id.comp);
-        sparkView = (SparkView)findViewById(R.id.main_sparkview);
+//        sparkView = (SparkView)findViewById(R.id.main_sparkview);
         fab = (FloatingActionButton)findViewById(R.id.main_fab);
+        historyBtn = (Button)findViewById(R.id.main_history_btn);
         mainCoord = (CoordinatorLayout)findViewById(R.id.activity_main);
+        progressSpinner = (ProgressBar)findViewById(R.id.main_progress);
         context = this;
 
         setTypeface();
         setSupportActionBar(toolbar);
         setupDrawer();
+        setupHistory();
         setupFab();
         if (App.token != null) {
             refresh();
@@ -192,6 +201,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    void setupHistory() {
+        historyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressSpinner.setVisibility(View.VISIBLE);
+                //TODO : start async for pulling history
+            }
+        });
+    }
     void signOut() {
         SharedPreferences sp = this.getSharedPreferences("io.fharmony.bedebestoon", Context.MODE_PRIVATE);
         sp.edit().remove(App.tokenKey).apply();
@@ -229,6 +247,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return builder.toString();
+    }
+    public static void showHistory(String history, Context context) {
+        progressSpinner.setVisibility(View.INVISIBLE);
+        new MaterialDialog.Builder(context)
+                .content(history)
+                .show();
     }
 
 
