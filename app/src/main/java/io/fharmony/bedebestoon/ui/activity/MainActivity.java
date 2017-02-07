@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     static CoordinatorLayout mainCoord;
     FloatingActionButton fab;
     Toolbar toolbar;
+    TextView title;
     Drawer drawer;
     Context context;
     Button historyBtn;
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         AssetManager am = getApplicationContext().getAssets();
         vazir = Typeface.createFromAsset(am, "fonts/Vazir.ttf");
         toolbar = (Toolbar)findViewById(R.id.main_toolbar);
+        title = (TextView)findViewById(R.id.main_title);
         inTimes = (TextView)findViewById(R.id.in_times);
         inAmount = (TextView)findViewById(R.id.in_comp);
         exTimes = (TextView)findViewById(R.id.ex_times);
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         progressSpinner = (ProgressBar)findViewById(R.id.main_progress);
         context = this;
 
+        toolbar.setTitle("");
         setTypeface();
         setSupportActionBar(toolbar);
         setupDrawer();
@@ -124,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         tv3.setTypeface(vazir);tv5.setTypeface(vazir);tv6.setTypeface(vazir);
         tv8.setTypeface(vazir);inAmount.setTypeface(vazir);inTimes.setTypeface(vazir);
         exAmount.setTypeface(vazir);exTimes.setTypeface(vazir);wholeAmount.setTypeface(vazir);
+        title.setTypeface(vazir);
     }
 
     public static void setTable(GenStatResult gsr) {

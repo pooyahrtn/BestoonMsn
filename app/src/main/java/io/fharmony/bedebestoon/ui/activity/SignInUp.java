@@ -82,6 +82,7 @@ public class SignInUp extends AppCompatActivity {
     void setTypeface() {
         signin.setTypeface(vazir);
         signup.setTypeface(vazir);
+        title.setTypeface(vazir);
     }
     void signin() {
         title.setText("در حال ورود...");
